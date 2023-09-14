@@ -17,18 +17,19 @@ const ChatListItem = ({ chat }) => {
     >
       <Image source={{ uri: chat.user.image }} style={styles.image} />
 
-      <View style={styles.row}>
-        <Text style={styles.name} numberOfLines={1}>
-          {chat.user.name}
-        </Text>
-        <Text style={styles.subTitle}>
-          {dayjs(chat.lastMessage.createdAt).fromNow(true)}
+      <View style={styles.content}>
+        <View style={styles.row}>
+          <Text style={styles.name} numberOfLines={1}>
+            {chat.user.name}
+          </Text>
+          <Text style={styles.subTitle}>
+            {dayjs(chat.lastMessage.createdAt).fromNow(true)}
+          </Text>
+        </View>
+        <Text numberOfLines={2} style={styles.subTitle}>
+          {chat.lastMessage.text}
         </Text>
       </View>
-
-      <Text numberOfLines={2} style={styles.subTitle}>
-        {chat.lastMessage.text}
-      </Text>
     </Pressable>
   );
 };
