@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import ChatListItem from './src/components/ChatListItem';
+import ChatsScreen from './src/screens/ChatsScreen/ChatsScreen';
 import Navigator from './src/navigation';
 import { Amplify, Auth, API, graphqlOperation } from 'aws-amplify';
 import { withAuthenticator } from 'aws-amplify-react-native';
@@ -18,18 +19,17 @@ function App() {
       const authUser = await Auth.currentAuthenticatedUser({
         bypassCache: true,
       });
-      //sub as user ID
-      const userID = authUser.attributes.sub;
       //Search if auth user already exists in DB
       const userData = await API.graphql(
-        graphqlOperation(getUser, { id: userID })
+        graphqlOperation(getUser, { id: authUser.attributes.sub })
       );
       if (userData.data.getUser) {
         console.log('User already exists in database!');
+        return;
       }
 
       const newUser = {
-        id: userID,
+        id: authUser.attributes.sub,
         name: authUser.attributes.phone_number,
         status: 'Hey, I am using ChatApp',
       };
