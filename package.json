@@ -10,9 +10,14 @@
     "p": "prettier . --write"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.19.3",
+    "@react-native-community/netinfo": "^9.4.1",
     "@react-navigation/bottom-tabs": "^6.5.8",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
+    "amazon-cognito-identity-js": "^6.3.6",
+    "aws-amplify": "^5.3.11",
+    "aws-amplify-react-native": "^7.0.7",
     "dayjs": "^1.11.9",
     "expo": "~49.0.10",
     "expo-status-bar": "~1.6.0",
